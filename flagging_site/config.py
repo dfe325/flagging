@@ -1,6 +1,8 @@
 """
 Configurations for the website.
 """
+
+
 import os
 from dataclasses import dataclass
 
@@ -12,7 +14,9 @@ VAULT_FILE = os.path.join(ROOT_DIR, 'vault.zip')
 class BaseConfig:
     DEBUG: bool = False
     TESTING: bool = False
-    DATABASE: str = None
+    #source: https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/#update-configuration
+    #SQLALCHEMY_DATABASE_URI = "postgresql://yourusername:yourpassword@localhost/yournewdb"
+    SQLALCHEMY_DATABASE_URI = "postgresql://daneder:flagging@localhost/crwa_flagging"
     SECRET_KEY: str = None  # Loaded from vault
     KEYS: dict = None  # Loaded from vault
     VAULT_FILE: str = VAULT_FILE
