@@ -1,11 +1,9 @@
 """
 This file handles the construction of the Flask application object.
 """
-# source: http://killtheyak.com/use-postgresql-with-django-flask/
 from typing import ClassVar
 from flask import Flask
 from .data.keys import get_keys
-from flask.ext.sqlalchemy import SQLAlchemy
 
 def create_app(config: ClassVar = None) -> Flask:
     """Create and configure an instance of the Flask application.
@@ -76,9 +74,6 @@ def update_config_from_vault(app: Flask) -> None:
             app.config['SECRET_KEY'] = None
     else:
         app.config['SECRET_KEY'] = app.config['KEYS']['flask']['secret_key']
-
-# source: http://killtheyak.com/use-postgresql-with-django-flask/
-db = SQLAlchemy(app)
 
 if __name__ == '__main__':
     import os
