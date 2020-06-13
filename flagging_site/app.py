@@ -4,6 +4,7 @@ This file handles the construction of the Flask application object.
 from typing import ClassVar
 from flask import Flask
 from .data.keys import get_keys
+from .data import db
 
 def create_app(config: ClassVar = None) -> Flask:
     """Create and configure an instance of the Flask application.
@@ -33,6 +34,8 @@ def create_app(config: ClassVar = None) -> Flask:
     # Use the stuff inside `vault.zip` file to update the app.
     update_config_from_vault(app)
 
+    db.init_app(app)
+
     # Register the "blueprints." Blueprints are basically like mini web apps
     # that can be joined to the main web app.
     from .blueprints import flagging, cyanobacteria
@@ -41,11 +44,12 @@ def create_app(config: ClassVar = None) -> Flask:
 
     # Register the database commands
 
-from .data import db
-    db.init_app(app)
+    return app
+
+
 
     # And we're all set! We can hand the app over to flask at this point.
-    return app
+#return app
 
 
 def update_config_from_vault(app: Flask) -> None:
@@ -81,3 +85,5 @@ if __name__ == '__main__':
     os.environ['VAULT_PASSWORD'] = input('Enter vault password: ')
     app = create_app()
     app.run()
+
+
