@@ -1,6 +1,9 @@
 .vscode/
+*.code-workspace
 .idea/
 keys.yml
+.DS_Store
+Pipfile
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
