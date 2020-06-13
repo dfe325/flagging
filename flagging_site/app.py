@@ -46,11 +46,8 @@ def create_app(config: ClassVar = None) -> Flask:
 
     return app
 
-
-
     # And we're all set! We can hand the app over to flask at this point.
 #return app
-
 
 def update_config_from_vault(app: Flask) -> None:
     """
