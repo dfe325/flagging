@@ -7,17 +7,11 @@ from flask import Flask
 from .data.keys import get_keys
 from .data.keys import offline_mode
 
-<<<<<<< HEAD
-def create_app(config: ClassVar = None) -> Flask:
-    """Create and configure an instance of the Flask application.
-=======
 
 def create_app(config: Type = None) -> Flask:
     """Create and configure an instance of the Flask application. We use the
     `create_app` scheme over defining the `app` directly at the module level so
     the app isn't loaded immediately by importing the module.
->>>>>>> 412fae782ac38f971a1715aeb257a8ab10a9ad3a
-
     Args:
         config: (ClassVar) Can be either a string such as `config.BaseConfig`,
                 or the actual object itself.
@@ -60,13 +54,12 @@ def create_app(config: Type = None) -> Flask:
         app.register_blueprint(getattr(blueprints, bp_module).bp)
 
     # Register the database commands
-    from . import db
-    db.init_app(app)
-
-    return app
+    # from .data import db
+    # db.init_app(app)
 
     # And we're all set! We can hand the app over to flask at this point.
-#return app
+    return app
+
 
 def update_config_from_vault(app: Flask) -> None:
     """
@@ -74,11 +67,9 @@ def update_config_from_vault(app: Flask) -> None:
     vault also stores the "SECRET_KEY", which is a Flask builtin configuration
     variable (i.e. Flask treats the "SECRET_KEY" as special). So we also
     populate the "SECRET_KEY" in this step.
-
     If we fail to load the vault in development mode, then the user is warned
     that the vault was not loaded successfully. In production mode, failing to
     load the vault raises a RuntimeError.
-
     Args:
         app: A Flask application instance.
     """
@@ -95,10 +86,9 @@ def update_config_from_vault(app: Flask) -> None:
     else:
         app.config['SECRET_KEY'] = app.config['KEYS']['flask']['secret_key']
 
+
 if __name__ == '__main__':
     os.environ['FLASK_ENV'] = 'development'
     os.environ['VAULT_PASSWORD'] = input('Enter vault password: ')
     app = create_app()
     app.run()
-
-
