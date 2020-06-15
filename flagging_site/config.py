@@ -1,8 +1,6 @@
 """
 Configurations for the website.
 """
-
-
 import os
 from typing import Dict, Any, Optional, List
 from dataclasses import dataclass
@@ -30,13 +28,6 @@ class BaseConfig:
     # ==========================================================================
     DEBUG: bool = False
     TESTING: bool = False
-<<<<<<< HEAD
-    #source: https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/#update-configuration
-    #SQLALCHEMY_DATABASE_URI = "postgresql://yourusername:yourpassword@localhost/yournewdb"
-    SQLALCHEMY_DATABASE_URI = "postgresql://daneder:flagging@localhost/crwa_flagging"
-    SECRET_KEY: str = None  # Loaded from vault
-    KEYS: dict = None  # Loaded from vault
-=======
     SECRET_KEY: str = None  # Note: Loaded from vault
 
     # ==========================================================================
@@ -69,7 +60,6 @@ class BaseConfig:
     through the vault.
     """
 
->>>>>>> 412fae782ac38f971a1715aeb257a8ab10a9ad3a
     VAULT_FILE: str = VAULT_FILE
     """Reference to the vault file's location. It's mostly passed here as a
     formality so that it can be adjusted if needed and accessed anywhere without
@@ -105,11 +95,9 @@ class DevelopmentConfig(BaseConfig):
     """The Development Config is used for running the website on your own
     computer. This is the default config loaded up when you use `run_unix_dev`
     or `run_windows_dev` to boot up the website.
-
     This config turns on both Flask's debug mode (which shows detailed messages
     for unhandled exceptions) and Flask's testing mode (which turns off the
     app instance's builtin exception handling).
-
     This config also turns on a `VAULT_OPTIONAL` mode, which warns the user if
     the vault hasn't been loaded but doesn't prevent the website from loading
     just because the vault is not open.
@@ -135,8 +123,4 @@ class TestingConfig(BaseConfig):
     """
 
 class TestingConfig(BaseConfig):
-<<<<<<< HEAD
-     TESTING: bool = True
-=======
     TESTING: bool = True
->>>>>>> 412fae782ac38f971a1715aeb257a8ab10a9ad3a
