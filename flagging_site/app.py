@@ -54,8 +54,8 @@ def create_app(config: Type = None) -> Flask:
         app.register_blueprint(getattr(blueprints, bp_module).bp)
 
     # Register the database commands
-    # from .data import db
-    # db.init_app(app)
+    from .data import db
+    db.init_app(app)
 
     # And we're all set! We can hand the app over to flask at this point.
     return app

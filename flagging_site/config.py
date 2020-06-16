@@ -36,7 +36,8 @@ class BaseConfig:
     # Not currently used, but soon we'll want to start using the config to set
     # up references to the database, data storage, and data retrieval.
     # ==========================================================================
-    DATABASE: str = None
+    DATABASE_URI = os.environ['DATABASE_URL']
+
 
     # ==========================================================================
     # MISC. CUSTOM CONFIG OPTIONS
