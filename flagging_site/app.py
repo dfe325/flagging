@@ -19,6 +19,7 @@ def create_app(config: Type = None) -> Flask:
         The fully configured Flask app instance.
     """
     app = Flask(__name__, instance_relative_config=True)
+    app.config.from_envvar('DATABASE_URL')
 
     # Get a config for the website. If one was not passed in the function, then
     # a config will be used depending on the `FLASK_ENV`.
