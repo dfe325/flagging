@@ -38,7 +38,6 @@ class BaseConfig:
     # ==========================================================================
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 
-
     # ==========================================================================
     # MISC. CUSTOM CONFIG OPTIONS
     #
@@ -122,6 +121,4 @@ class TestingConfig(BaseConfig):
     """The Testing Config is used for unit-testing and integration-testing the
     website.
     """
-
-class TestingConfig(BaseConfig):
     TESTING: bool = True
