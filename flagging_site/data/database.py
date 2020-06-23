@@ -5,14 +5,23 @@ retrieving data.
 
 import os
 import psycopg2
+from flask import app, g
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(database=DATABASE_URL, user='postgres', host='localhost', password='postgrespw', port=5432)
+conn = psycopg2.connect(DATABASE_URL)
 
-#conn.close()
+def get_db():
+    if 'db' not in g:
+        g.db = conn
 
-print(conn.closed)
+    return g.db
+
+def close_db(e=None):
+    db = g.pop('db', None)
+
+    if db is not None:
+        db.close()
 
 try:
     cur = conn.cursor()
@@ -20,4 +29,5 @@ try:
 except psycopg2.OperationalError:
     pass
 
-print(conn.closed) # 2
+conn.close()
+
