@@ -7,7 +7,7 @@ import os
 import psycopg2
 from flask import app, g
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 conn = psycopg2.connect(DATABASE_URL)
 
@@ -30,4 +30,3 @@ except psycopg2.OperationalError:
     pass
 
 conn.close()
-

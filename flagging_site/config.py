@@ -36,7 +36,7 @@ class BaseConfig:
     # Not currently used, but soon we'll want to start using the config to set
     # up references to the database, data storage, and data retrieval.
     # ==========================================================================
-    SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+    DATABASE_URL = os.getenv('DATABASE_URL')
 
     # ==========================================================================
     # MISC. CUSTOM CONFIG OPTIONS
